@@ -1,4 +1,4 @@
-import 'package:boom_boom/home/home.dart';
+import 'package:boom_boom/home/home_admain.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +37,8 @@ class _EditItemsState extends State<EditItems> {
                       filled: true,
                       fillColor: Colors.white,
                       labelText: "car's name",
-                      prefixIcon: Icon(Icons.car_crash)),
+                      prefixIcon: Icon(Icons.car_crash_outlined,
+                          color: Colors.red.shade900)),
                 ),
                 TextFormField(
                   onSaved: (val) {
@@ -47,7 +48,8 @@ class _EditItemsState extends State<EditItems> {
                       filled: true,
                       fillColor: Colors.white,
                       labelText: "car's number",
-                      prefixIcon: Icon(Icons.car_crash)),
+                      prefixIcon: Icon(Icons.car_crash_outlined,
+                          color: Colors.red.shade900)),
                 ),
                 SizedBox(
                   height: 30,
@@ -64,7 +66,7 @@ class _EditItemsState extends State<EditItems> {
                         {'cars-name': carsName, 'cars-number': carsNumber});
                     Navigator.of(context)
                         .pop(MaterialPageRoute(builder: (context) {
-                      return Home();
+                      return HomeAdmain();
                     }));
                   },
                   child: Text(

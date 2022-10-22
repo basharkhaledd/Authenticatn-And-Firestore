@@ -1,5 +1,5 @@
 import 'package:boom_boom/auth/login.dart';
-import 'package:boom_boom/home/home.dart';
+import 'package:boom_boom/home/home_admain.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -11,7 +11,6 @@ Future<void> main() async {
 // Ideal time to initialize
 // await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
   runApp(MaterialApp(
-    
     home: MyApp(),
   ));
 //...
@@ -22,6 +21,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Home();
+    return HomeAdmain();
   }
 }

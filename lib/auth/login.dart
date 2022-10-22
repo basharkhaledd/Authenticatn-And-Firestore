@@ -1,6 +1,9 @@
+import 'package:boom_boom/auth/forget_password.dart';
+import 'package:boom_boom/auth/sigin_with_google.dart';
 import 'package:boom_boom/auth/signup.dart';
 import 'package:boom_boom/component/alert.dart';
-import 'package:boom_boom/home/home.dart';
+import 'package:boom_boom/home/home_admain.dart';
+import 'package:boom_boom/home/home_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +18,9 @@ class _LoginState extends State<Login> {
   @override
   TextEditingController controllerEmail = TextEditingController();
   TextEditingController controllerPassword = TextEditingController();
+  bool myvalue = false;
+  String test = "";
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
@@ -49,6 +55,25 @@ class _LoginState extends State<Login> {
                       border:
                           OutlineInputBorder(borderSide: BorderSide(width: 2))),
                 ),
+                Container(
+                    margin: EdgeInsets.all(10),
+                    child: Row(
+                      children: [
+                        Text("if you Forget password "),
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context)
+                                .push(MaterialPageRoute(builder: (context) {
+                              return ForgetPassword();
+                            }));
+                          },
+                          child: Text(
+                            "Click Here",
+                            style: TextStyle(color: Colors.blue.shade900),
+                          ),
+                        )
+                      ],
+                    )),
                 Container(
                     margin: EdgeInsets.all(10),
                     child: Row(
@@ -90,13 +115,19 @@ class _LoginState extends State<Login> {
                               .signInWithEmailAndPassword(
                                   email: controllerEmail.text,
                                   password: controllerPassword.text);
-
-                          setState(() {
+                          if (controllerPassword.text == "31619118077" &&
+                              controllerEmail.text ==
+                                  "khaledbashar308@gmail.com") {
                             Navigator.of(context)
                                 .push(MaterialPageRoute(builder: (context) {
-                              return Home();
+                              return HomeAdmain();
                             }));
-                          });
+                          } else {
+                            Navigator.of(context)
+                                .push(MaterialPageRoute(builder: (context) {
+                              return HomeUser();
+                            }));
+                          }
                         } catch (e) {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text("chek your password or email")));
@@ -106,6 +137,20 @@ class _LoginState extends State<Login> {
                         "Login",
                         style: Theme.of(context).textTheme.headline6,
                       ),
+                    )),
+                ElevatedButton.icon(
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(
+                      Colors.black45,
+                    )),
+                    icon: Icon(Icons.email_outlined),
+                    onPressed: () async {
+                      UserCredential cred =
+                          await siginWithGoogle.signInWithGoogle();
+                    },
+                    label: Text(
+                      "Sign with Gmail",
+                      style: Theme.of(context).textTheme.headline6,
                     ))
               ],
             )),

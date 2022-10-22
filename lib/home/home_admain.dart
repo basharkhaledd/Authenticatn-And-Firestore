@@ -1,18 +1,16 @@
 import 'package:boom_boom/crud/additems.dart';
 import 'package:boom_boom/crud/editeaitems.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../auth/login.dart';
 import '../component/drawer.dart';
 
-class Home extends StatefulWidget {
+class HomeAdmain extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _HomeAdmainState createState() => _HomeAdmainState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeAdmainState extends State<HomeAdmain> {
   // getData() async {
 
   //   DocumentReference doc = FirebaseFirestore.instance.collection("items").doc("Bnj1hXOa8FYiz9OweP0s");
@@ -29,7 +27,7 @@ class _HomeState extends State<Home> {
       drawer: MyDrawer(),
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 61, 105, 147),
-        title: Text('HomePage'),
+        title: Text('HomeAdmain'),
       ),
       floatingActionButton: FloatingActionButton(
           backgroundColor: Color.fromARGB(255, 61, 105, 147),
@@ -48,10 +46,20 @@ class _HomeState extends State<Home> {
                 itemCount: itemList.length,
                 itemBuilder: (BuildContext context, int index) {
                   return ListTile(
-                    title: Text("${itemList[index]["cars-name"]}"),
+                    title: Text(
+                      "${itemList[index]["cars-name"]}",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                    ),
                     subtitle: Text(
                       "${itemList[index]["cars-number"]}",
-                      style: TextStyle(color: Colors.green.shade900),
+                      style:
+                          TextStyle(color: Colors.green.shade900, fontSize: 15),
+                    ),
+                    leading: CircleAvatar(
+                      foregroundImage: NetworkImage(
+                          "https://cdn.iconscout.com/icon/premium/png-256-thumb/jeep-549-531521.png"),
+                      radius: 30,
                     ),
                     trailing: Container(
                       width: 100,
@@ -69,7 +77,7 @@ class _HomeState extends State<Home> {
                               onPressed: () async {
                                 final item = FirebaseFirestore.instance
                                     .collection("items")
-                                    .doc();
+                                    .doc("$index");
                                 item.delete();
                               },
                               icon: Icon(Icons.delete)),
@@ -81,7 +89,7 @@ class _HomeState extends State<Home> {
               );
             }
             return Center(
-              child: Text("========="),
+              child: Text(""),
             );
           }),
     );

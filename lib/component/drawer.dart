@@ -1,5 +1,4 @@
 import 'package:boom_boom/auth/login.dart';
-import 'package:boom_boom/home/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +22,7 @@ class _MyDrawerState extends State<MyDrawer> {
           CircleAvatar(
             radius: 50,
             foregroundImage: NetworkImage(
-                "https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg"),
+                "https://thumbs.dreamstime.com/b/icon-jeep-automobile-jeep-151846873.jpg"),
           ),
           SizedBox(
             height: 10,
@@ -31,7 +30,7 @@ class _MyDrawerState extends State<MyDrawer> {
           Center(
             child: Text(
               "Bashar-qawasmi",
-              style: TextStyle(fontSize: 20, color: Colors.white60),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
           SizedBox(
